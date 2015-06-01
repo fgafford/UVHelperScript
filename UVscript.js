@@ -5,7 +5,7 @@
 
 // Globals
     var alt = false;
-    var UVrootURL = window.location.host + "/admin';
+    var UVrootURL = window.location.host + "/admin";
 
     // end function for catching end of keystroke
     function keyup(e) {

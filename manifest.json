@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "UV Helper Scripts",
-    "description": "Scripts for making life easier",
+    "description": "Scripts for making life easier when using User Voice support ticket system",
     "version": "1",
     "icons": {
         "16": "Images/hammer-icon.png",
@@ -17,6 +17,7 @@
     "content_scripts": [
         {
             "matches": [
+                "http://*.uservoice.com/*",
                 "https://*.uservoice.com/*"
             ],
             "js": ["injectScript.js"]
