@@ -20,7 +20,8 @@
                 "http://*.uservoice.com/*",
                 "https://*.uservoice.com/*"
             ],
-            "js": ["injectScript.js"]
+            "js": ["injectScript.js"],
+            "css": ["UVstyle.css"]
         }
     ],
     "web_accessible_resources": ["UVscript.js"]
