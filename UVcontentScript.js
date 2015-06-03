@@ -11,24 +11,18 @@
     function updateIcon() {
         try {
             // either use map here or something that will add all the values together
-            var queues = ['Escalation','Unassigned']; // TODO : need to get this data from file
+            var queues = ['All tickets','Unassigned']; // TODO : need to get this data from file
 
 
             var counts = map(queues, function(queue){
-                //var badge = $('[data-custom-title-tag="' + queue + '"] .badge');
                 var badge = document.querySelector('[data-custom-title-tag="' + queue + '"] .badge');
                 if (badge) {
-                    var text = parseInt(badge.text().trim());
+                    var text = parseInt(badge.textContent.trim());
                     return isNaN(text)? 0 : text;
                 } else {
                     return 0;
                 }
             });
-
-            /* Dummy Test Data */
-            counts = [3,4]
-
-            /* =============== */
 
             // get as a single number
             var count = counts.reduce(function(runningTot, current){
@@ -44,10 +38,8 @@
                 imagePath += count + extension;
             }
 
-            // this needs to be run within the context of the extension cannot be run out of scope of the extension
-            //$('link[rel*="icon"]').prop('href', chrome.extension.getURL(imagePath));
+
             document.querySelector('link[rel*="icon"]').setAttribute('href',chrome.extension.getURL(imagePath))
-   debugger;
 
         } catch (err) {
             // need to be able to catch if an invalid que is being accessed here.... maybe a map function for each of the quees in an array
