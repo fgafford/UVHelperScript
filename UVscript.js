@@ -1,7 +1,7 @@
 /**
  * Script designed to help with tasts in UserVoice Helpdesk software
  */
-(function() {
+//(function() {
 
 // Globals
     var alt = false;
@@ -80,30 +80,46 @@
     }
     /*
      * Icon Changer Code
-     *
-     * possible location for count:
-     * http://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/32/Number-
-     * http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/32/Numbers-
-     *
      */
     function updateIcon() {
         try {
-            var iconURL = 'http://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/32/Number-';
-            var extension = '-icon.png';
-           // var iconURL = 'http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/32/Numbers-';
-           // var extension = '-filled-icon.png';
-            
-         // var num = parseInt($('[data-custom-title-tag="My tickets"] .badge').text().trim()); // My tickets
-            var Escalation = parseInt($('[data-custom-title-tag="Escalation"] .badge').text().trim()); // Escalation tickets
-            Escalation = isNaN(Escalation)?0:Escalation;
-            var Unassigned = parseInt($('[data-custom-title-tag="Unassigned"] .badge').text().trim()); // Unassigned tickets
-            Unassigned = isNaN(Unassigned)?0:Unassigned;
-            num = Unassigned + Escalation;
-            num = !!num && (num < 10) ? num : 0;
 
-            var img = iconURL + num + extension;
-            $('link[rel*="icon"]').prop('href', img);
+            var extension = '.png';
+
+            // either use map here or something that will add all the values together
+            var queues = ['Escalation','Unassigned']; // TODO : need to get this data from file
+
+
+            var counts = map(queues, function(queue){
+                var text = parseInt($('[data-custom-title-tag="' + queue + '"] .badge').text().trim());
+                return isNaN(text)? 0 : text;
+            });
+
+            /* Dummy Test Data */
+            counts = [3,4]
+
+            /* =============== */
+
+            // get as a single number
+            var count = counts.reduce(function(runningTot, current){
+                return runningTot + current
+            })
+
+            var imagePath;
+            if (count > 10) {
+                // special case -- display the warning
+                imagePath = "warning" + extension;
+            } else {
+                // dispay the nuber in the tab
+                imagePath = count + extension;
+            }
+
+            // this needs to be run within the context of the extension cannot be run out of scope of the extension
+            $('link[rel*="icon"]').prop('href', chrome.extension.getURL(imagePath));
+
         } catch (err) {
+            // need to be able to catch if an invalid que is being accessed here.... maybe a map function for each of the quees in an array
+            // yes... I really like the map idea.....
         }
     }
 
@@ -173,4 +189,29 @@
         highlightSubject();
         enableMessageFolding();
     };
-})();
+
+    // Helper func
+    function map(enumerable, callback){
+        if(!enumerable){
+            return null;
+        }
+        var result = [];
+        if(enumerable instanceof Array){
+            for(var i = 0, l = enumerable.length; i < l; i++){
+                result.push(callback(enumerable[i], i));
+            }
+        }else if(typeof enumerable === 'object'){
+            for(var key in enumerable){
+                if(typeof key === 'undefined'){
+                    continue;
+                }
+                result.push(callback(enumerable[key], key));
+            }
+        }else{
+            return null;
+        }
+        return result;
+    }
+
+
+//})();
