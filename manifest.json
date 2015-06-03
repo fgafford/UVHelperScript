@@ -20,9 +20,24 @@
                 "http://*.uservoice.com/*",
                 "https://*.uservoice.com/*"
             ],
-            "js": ["injectScript.js"],
+            "js": [
+                    "UVcontentScript.js",
+                    "injectScript.js"
+             ],
             "css": ["UVstyle.css"]
         }
     ],
-    "web_accessible_resources": ["UVscript.js"]
+    "web_accessible_resources": [
+        "UVscript.js",
+        "Images/1.png",
+        "Images/2.png",
+        "Images/3.png",
+        "Images/4.png",
+        "Images/5.png",
+        "Images/6.png",
+        "Images/7.png",
+        "Images/8.png",
+        "Images/9.png",
+        "Images/warning.png"
+    ]
 }
