@@ -7,12 +7,15 @@
         "16": "Images/hammer-icon.png",
         "48": "Images/Farm-Fresh_hammer.png"
     },
+    "options_page": "options.html",
     "permissions": [
         "http://*/*",
-        "https://*/*"
+        "https://*/*",
+        "storage"
     ],
     "browser_action": {
-        "default_title": "UV Helper Scripts"
+        "default_title": "UV Helper Scripts",
+        "default_popup": "options.html"
     },
     "content_scripts": [
         {
