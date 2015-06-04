@@ -1,0 +1,46 @@
+/*
+ * This is the options contorller foo....
+ * Chrome no like script tags that reference 'self'
+ */
+
+
+chrome.tabs.getSelected(null, function(tab) {
+    port = chrome.tabs.connect(tab.id);
+    port.onMessage.addListener(function(msg) {
+       msg.queues.forEach(function(i){
+           addOption(i);
+       });
+    });
+    port.postMessage({"request": "queues"});
+});
+
+
+// func for appending checkboxs (one per queue)
+function addOption(title){
+    // add a 'tr' with title and a checkbox for it.
+    //var row = table.find('tbody').append('<tr><input type="checkbox" id="' + title + '"></input></tr>');
+    var checkbox = '<td><input type="checkbox" id="' + title + '"></input></td>';
+    var labelText = '<td><label for="' + title + '">' + title + '</label></td>'
+
+    var row = $('<tr></tr>').appendTo(table.find('tbody'));
+
+    $(checkbox + labelText).appendTo(row);
+
+    table.append(row);
+        
+    // go ahead and set up the on chage save listener as well...
+}
+
+function save() {
+    var queues = []; // need to get all the selection options here
+
+    chrome.storage.sync.set({"queues": queues},function(){ /* confirm callback */ })
+}
+
+window.onload = function(){
+    table = $('#queues');
+
+    // TODO: restore previously saved values
+}
+
+

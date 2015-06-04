@@ -3,6 +3,7 @@
  */
 //(function() {
 
+
 // Globals
     var alt = false;
     var UVrootURL = window.location.host + "/admin";
@@ -27,12 +28,12 @@
                         $('.ticket-reply-content').hide();
                         // make sure the reply to sticks around
                         $($('.ticket-reply-content')[0]).show();
-                        enableMessageFolding(); 
+                        enableMessageFolding();
                         break;
                 case 90: //Z
                         // show all
                         $('.ticket-reply-content').show();
-                        enableMessageFolding(); 
+                        enableMessageFolding();
                         break;
                 case 88: // X
                     // update();
@@ -99,7 +100,7 @@
     function focusOnNote() {
         $('.ticket-reply-tab-note > a').click();
     }
-    
+
     function highlightSubject() {
         $('.ticket-item-subject').css('background-color','yellow');
     }
@@ -117,11 +118,11 @@
     // enable click on email name to show or hide response details
     function enableMessageFolding() {
         var pics = $('.ticket-reply-avatar')
-        // check to see if the event is already on the elements. 
+        // check to see if the event is already on the elements.
         if( pics.length && !$(pics[0]).data('events')){
             pics.click(function(i,e){
                 $(this).parent().parent().find('.ticket-reply-content').toggle();
-            });    
+            });
         };
     };
 
@@ -139,7 +140,7 @@
         focusOnTicket();
 
         $('.ticket-item-title').focus(addTargetWrapper);
-        
+
         highlightSubject();
         enableMessageFolding();
     };

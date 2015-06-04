@@ -5,12 +5,29 @@
 
     var extension = '.png';
 
+    // message passing to get the queues we are dealing with
+    chrome.runtime.onConnect.addListener(function(port) {
+        port.onMessage.addListener(function(msg) {
+console.log({ "queues": getQueues() });
+           port.postMessage( { "queues": getQueues() });
+        });
+    });
+
+    function getQueues() {
+        var queues = []
+        $('[data-model="ticket-stream"] .name').each(function(i,e){
+            queues.push($(e).first().text());
+        })
+
+        return queues;
+    }
+
+
     /*
      * Icon Changer Code
      */
     function updateIcon() {
         try {
-            // either use map here or something that will add all the values together
             var queues = ['All tickets','Unassigned']; // TODO : need to get this data from file
 
 
@@ -42,8 +59,7 @@
             document.querySelector('link[rel*="icon"]').setAttribute('href',chrome.extension.getURL(imagePath))
 
         } catch (err) {
-            // need to be able to catch if an invalid que is being accessed here.... maybe a map function for each of the quees in an array
-            // yes... I really like the map idea.....
+            // TODO: warn user that the queues read failed (suggest they reset the options)
         }
     }
 
