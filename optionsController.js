@@ -17,17 +17,12 @@ chrome.tabs.getSelected(null, function(tab) {
 
 // func for appending checkboxs (one per queue)
 function addOption(title){
-    // add a 'tr' with title and a checkbox for it.
-    //var row = table.find('tbody').append('<tr><input type="checkbox" id="' + title + '"></input></tr>');
     var checkbox = '<td><input type="checkbox" id="' + title + '"></input></td>';
     var labelText = '<td><label for="' + title + '">' + title + '</label></td>'
-
     var row = $('<tr></tr>').appendTo(table.find('tbody'));
-
     $(checkbox + labelText).appendTo(row);
-
     table.append(row);
-        
+
     // go ahead and set up the on chage save listener as well...
 }
 
@@ -39,6 +34,12 @@ function save() {
 
 window.onload = function(){
     table = $('#queues');
+    $('#showOptions').click(function(){
+        $('#options').toggle();
+    });
+    $('#showHotKeys').click(function(){
+        $('#hotKeys').toggle();
+    });
 
     // TODO: restore previously saved values
 }
