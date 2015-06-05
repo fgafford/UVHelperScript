@@ -23,21 +23,22 @@ function addOption(title){
     $(checkbox + labelText).appendTo(row);
     table.append(row);
 
-    
+
     // go ahead and set up the on chage save listener as well...
 }
 
 function saveOptions() {
-    var queues = []; 
+    var queues = [];
     $('input:checked').each(function(i,e){
         queues.push(e.id);
     });
 
-    chrome.storage.local.set({"queues": queues},function(){ 
+    chrome.storage.local.set({"queues": queues},function(){
         confirm("UserVoice Helper Script Settings updated.");
+        window.close();
         // test and reload?
     })
-    
+
     // To Restore Data:
     // chrome.storage.sync.get('queues',function(data){console.log(data)})
 }
@@ -46,9 +47,11 @@ window.onload = function(){
     table = $('#queues');
     $('#showOptions').click(function(){
         $('#options').toggle();
+        $('#hotKeys').hide();
     });
     $('#showHotKeys').click(function(){
         $('#hotKeys').toggle();
+        $('#options').hide();
     });
 
     $('#save').click(saveOptions);
