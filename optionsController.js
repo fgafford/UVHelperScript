@@ -23,13 +23,23 @@ function addOption(title){
     $(checkbox + labelText).appendTo(row);
     table.append(row);
 
+    
     // go ahead and set up the on chage save listener as well...
 }
 
-function save() {
-    var queues = []; // need to get all the selection options here
+function saveOptions() {
+    var queues = []; 
+    $('input:checked').each(function(i,e){
+        queues.push(e.id);
+    });
 
-    chrome.storage.sync.set({"queues": queues},function(){ /* confirm callback */ })
+    chrome.storage.local.set({"queues": queues},function(){ 
+        confirm("UserVoice Helper Script Settings updated.");
+        // test and reload?
+    })
+    
+    // To Restore Data:
+    // chrome.storage.sync.get('queues',function(data){console.log(data)})
 }
 
 window.onload = function(){
@@ -40,6 +50,8 @@ window.onload = function(){
     $('#showHotKeys').click(function(){
         $('#hotKeys').toggle();
     });
+
+    $('#save').click(saveOptions);
 
     // TODO: restore previously saved values
 }

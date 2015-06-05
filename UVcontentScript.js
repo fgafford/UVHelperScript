@@ -8,16 +8,20 @@
     // message passing to get the queues we are dealing with
     chrome.runtime.onConnect.addListener(function(port) {
         port.onMessage.addListener(function(msg) {
-console.log({ "queues": getQueues() });
            port.postMessage( { "queues": getQueues() });
         });
     });
 
     function getQueues() {
         var queues = []
-        $('[data-model="ticket-stream"] .name').each(function(i,e){
-            queues.push($(e).first().text());
-        })
+        $('#nav-tickets [data-model="ticket-stream"] .name').each(function(i,e){
+           // need a way to keep out the 'My Searches' queues that do not keep number badges
+            if ($(e).parents('#ticket-streams-saved').length) {
+               // do nothing here....
+            } else {
+                queues.push($(e).first().text());    
+            }
+        });
 
         return queues;
     }
@@ -28,7 +32,10 @@ console.log({ "queues": getQueues() });
      */
     function updateIcon() {
         try {
-            var queues = ['All tickets','Unassigned']; // TODO : need to get this data from file
+            //var queues = ['All tickets','Unassigned']; // TODO : need to get this data from file
+            chrome.storage.local.get('queues',function(data){
+                queues = data.queues;
+            })
 
 
             var counts = map(queues, function(queue){
