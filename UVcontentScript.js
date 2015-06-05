@@ -96,6 +96,6 @@
     // is this really needed in the context of a ContentScript?
     window.onload = function() {
         updateIcon();
-        setInterval(updateIcon, 5000);
+        setInterval(updateIcon, 2500);
     };
 

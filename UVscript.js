@@ -24,17 +24,15 @@
         if (alt) {
             switch (key) {
                 case 65: // A
-                        // hide all
-                        $('.ticket-reply-content').hide();
-                        // make sure the reply to sticks around
-                        $($('.ticket-reply-content')[0]).show();
-                        enableMessageFolding();
-                        break;
+                    // hide all
+                    $('.ticket-reply-content').hide();
+                    // make sure the reply to sticks around
+                    $($('.ticket-reply-content')[0]).show();
+                    break;
                 case 90: //Z
-                        // show all
-                        $('.ticket-reply-content').show();
-                        enableMessageFolding();
-                        break;
+                    // show all
+                    $('.ticket-reply-content').show();
+                    break;
                 case 88: // X
                     // update();
                     break;
@@ -142,6 +140,15 @@
         $('.ticket-item-title').focus(addTargetWrapper);
 
         highlightSubject();
+
         enableMessageFolding();
+         
+         /*
+         * Because messages are loaded over ajax we have to keep checking
+         * back to make sure all messages are updated with the listeners
+         * the enableMessageFolding should only set listener once of the
+         * icons
+         */ 
+        setInterval(enableMessageFolding,2500);
     };
 //})();
