@@ -1,4 +1,4 @@
 /* Keep Notes aligned correctly */
-.ticket-note {
-    min-height: 80px;
+.ticket-reply {
+    min-height: 80px !important;
 }

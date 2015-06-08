@@ -27,12 +27,14 @@
                 "http://*.uservoice.com/*",
                 "https://*.uservoice.com/*"
             ],
+            "css": [
+                "UVstyle.css"
+            ],
             "js": [
                     "jquery.min.js",
                     "UVcontentScript.js",
                     "injectScript.js"
-             ],
-            "css": ["UVstyle.css"]
+             ]
         }
     ],
     "web_accessible_resources": [

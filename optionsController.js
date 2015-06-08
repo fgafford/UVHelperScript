@@ -17,8 +17,8 @@ chrome.tabs.getSelected(null, function(tab) {
 
 // func for appending checkboxs (one per queue)
 function addOption(title){
-    var checkbox = '<td><input type="checkbox" id="' + title + '"></input></td>';
-    var labelText = '<td><label for="' + title + '">' + title + '</label></td>'
+    var checkbox = '<td><input type="checkbox" id="' + slim(title) + '"></input></td>';
+    var labelText = '<td><label for="' + slim(title) + '">' + title + '</label></td>'
     var row = $('<tr></tr>').appendTo(table.find('tbody'));
     $(checkbox + labelText).appendTo(row);
     table.append(row);
@@ -30,18 +30,33 @@ function addOption(title){
 function saveOptions() {
     var queues = [];
     $('input:checked').each(function(i,e){
-        queues.push(e.id);
+        // now that we have slim we have to get the text from the label
+        queues.push( $('label[for="' + e.id + '"]').text() );
     });
 
-    chrome.storage.local.set({"queues": queues},function(){
-        confirm("UserVoice Helper Script Settings updated.");
-        window.close();
-        // test and reload?
-    })
+    var conf = confirm("UserVoice Helper Script Settings updated.");
+
+    if (conf) {
+        chrome.storage.local.set({"queues": queues},function(){
+            window.close();
+            // test and reload?
+        })
+    }
 
     // To Restore Data:
-    // chrome.storage.sync.get('queues',function(data){console.log(data)})
+    // chrome.storage.local.get('queues',function(data){console.log(data)})
 }
+
+function restoreSettings(){
+    chrome.storage.local.get('queues',function(data){
+        var queues = data.queues;
+        queues.forEach(function(e){
+            debugger;
+            $(document).find('#' + slim(e)).prop('checked',true);
+        })
+    })
+}
+
 
 window.onload = function(){
     table = $('#queues');
@@ -56,7 +71,10 @@ window.onload = function(){
 
     $('#save').click(saveOptions);
 
-    // TODO: restore previously saved values
+    // because Chrome has timing issues....
+    setTimeout(restoreSettings,200);
 }
 
-
+function slim(text) {
+    return text.replace(" ","").trim();
+}
