@@ -64,11 +64,11 @@
                     break;
                 case 81: // Q
                     // snap to personal tickets
-                    window.location = UVrootURL + '/tickets/?q=assignee%3Ame+status%3Aopen';
+                    window.location.href = '//' + UVrootURL + '/tickets/?q=assignee%3Ame+status%3Aopen';
                     break;
                 case 73: // I
                     // snap to inbox
-                    window.location = UVrootURL + '/tickets/?q=assignee%3A"none"+status%3Aopen';
+                    window.location = '//' +  UVrootURL + '/tickets/?q=assignee%3A"none"+status%3Aopen';
                     break;
                 case 82: // R
                     // snapps user to the most recent update
