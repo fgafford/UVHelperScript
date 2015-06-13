@@ -1,4 +1,4 @@
-<h1>UserVoice Helper Script</h1>
+<h1>  ========= UserVoice Helper Script ========== </h1>
 <p> This Chrome extension is designed to add some much needed functionality to the UserVoice web interface.</p>
 <h2>============ Features ==================</h2>
 This extension is to make life with UserVoice support software
@@ -22,3 +22,11 @@ alt + N : focus on Note pane (start typing note)
 alt + A : collapse all messages
 alt + Z : expand all messages
 Click on avatar : expand or collapse single message
+
+
+<h2>==== License and Legal ====</h2>
+This project is licensed under the terms of the MIT license.
+You can copy, fork, and extend for the benefit of the project.
+See LICENCSE.txt for more info.
+
+Icon images are Copyright of : http://www.iconarchive.com/
