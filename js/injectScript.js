@@ -9,7 +9,7 @@ var script = 'UVscript.js';
 
 // code to insert and run script
 var s = document.createElement('script');
-s.src = chrome.extension.getURL(script);
+s.src = chrome.extension.getURL('js/' + script);
 document.head.appendChild(s);
 
 s.onload = function() {

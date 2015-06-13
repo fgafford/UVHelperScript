@@ -1,17 +1,17 @@
 /**
  * Script designed to help with tasts in UserVoice Helpdesk software
  */
-//(function() {
-
 
 // Globals
-    var alt = false;
-    var UVrootURL = window.location.host + "/admin";
+    var UVHS = {
+        alt : false,
+        UVrootURL : window.location.host + "/admin"
+    }
 
     // end function for catching end of keystroke
     function keyup(e) {
         if (e.keyCode == 18) {
-            alt = false;
+            UVHS.alt = false;
         }
     }
 
@@ -19,9 +19,9 @@
     function keydown(e) {
         var key = e.keyCode;
         if (e.keyCode == 18) {
-            alt = true;
+            UVHS.alt = true;
         }
-        if (alt) {
+        if (UVHS.alt) {
             switch (key) {
                 case 65: // A
                     // hide all
@@ -64,11 +64,11 @@
                     break;
                 case 81: // Q
                     // snap to personal tickets
-                    window.location.href = '//' + UVrootURL + '/tickets/?q=assignee%3Ame+status%3Aopen';
+                    window.location.href = '//' + UVHS.UVrootURL + '/tickets/?q=assignee%3Ame+status%3Aopen';
                     break;
                 case 73: // I
                     // snap to inbox
-                    window.location = '//' +  UVrootURL + '/tickets/?q=assignee%3A"none"+status%3Aopen';
+                    window.location = '//' +  UVHS.UVrootURL + '/tickets/?q=assignee%3A"none"+status%3Aopen';
                     break;
                 case 82: // R
                     // snapps user to the most recent update
@@ -106,14 +106,13 @@
     function addTargetWrapper() {
         // wrap anchor around all search results so they can be targeted by Vimium
         try {
-            // removed due to Scope:   onclick="javascript:focusOnTicket();"
             $('.ticket-item-title').wrap('<a href="#"></a>');
         } catch (err) {
             console.log(err);
         }
     }
 
-    // enable click on email name to show or hide response details
+    // enable click on avitar to show or hide response details
     function enableMessageFolding() {
         var pics = $('.ticket-reply-avatar')
         // check to see if the event is already on the elements.
@@ -142,13 +141,12 @@
         highlightSubject();
 
         enableMessageFolding();
-         
+
          /*
          * Because messages are loaded over ajax we have to keep checking
          * back to make sure all messages are updated with the listeners
          * the enableMessageFolding should only set listener once of the
-         * icons
-         */ 
+         * icons.
+         */
         setInterval(enableMessageFolding,2500);
     };
-//})();

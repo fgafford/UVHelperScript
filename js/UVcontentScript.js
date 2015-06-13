@@ -19,7 +19,7 @@
             if ($(e).parents('#ticket-streams-saved').length) {
                // do nothing here....
             } else {
-                queues.push($(e).first().text());    
+                queues.push($(e).first().text());
             }
         });
 
@@ -53,7 +53,7 @@
                 return runningTot + current
             })
 
-            var imagePath = 'Images/';
+            var imagePath = 'img/';
             if (count > 10) {
                 // special case -- display the warning
                 imagePath += "warning" + extension;

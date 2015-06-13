@@ -4,8 +4,8 @@
     "description": "Scripts for making life easier when using User Voice support ticket system",
     "version": "1",
     "icons": {
-        "16": "Images/hammer-icon.png",
-        "48": "Images/Farm-Fresh_hammer.png"
+        "16": "img/hammer-icon.png",
+        "48": "img/Farm-Fresh_hammer.png"
     },
     "options_page": "options.html",
     "permissions": [
@@ -15,7 +15,7 @@
         "https://*/*"
     ],
     "background": {
-        "scripts": ["optionsController.js"]
+        "scripts": ["js/optionsController.js"]
     },
     "browser_action": {
         "default_title": "UV Helper Scripts",
@@ -28,27 +28,27 @@
                 "https://*.uservoice.com/*"
             ],
             "css": [
-                "UVstyle.css"
+                "css/UVstyle.css"
             ],
             "js": [
-                    "jquery.min.js",
-                    "UVcontentScript.js",
-                    "injectScript.js"
+                    "js/jquery.min.js",
+                    "js/UVcontentScript.js",
+                    "js/injectScript.js"
              ]
         }
     ],
     "web_accessible_resources": [
-        "UVscript.js",
-        "Images/0.png",
-        "Images/1.png",
-        "Images/2.png",
-        "Images/3.png",
-        "Images/4.png",
-        "Images/5.png",
-        "Images/6.png",
-        "Images/7.png",
-        "Images/8.png",
-        "Images/9.png",
-        "Images/warning.png"
+        "js/UVscript.js",
+        "img/0.png",
+        "img/1.png",
+        "img/2.png",
+        "img/3.png",
+        "img/4.png",
+        "img/5.png",
+        "img/6.png",
+        "img/7.png",
+        "img/8.png",
+        "img/9.png",
+        "img/warning.png"
     ]
 }
