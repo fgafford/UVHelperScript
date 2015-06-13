@@ -1,7 +1,13 @@
-/*
- * This is the options contorller foo....
- * Chrome no like script tags that reference 'self'
- */
+/*\
+|*|			=== UserVoice Helper Script === 
+|*| 			 optionsController.js
+|*| 
+|*|	This contains all the logic for the options menu.
+|*| Options are saved locally. Use Chrome.storage.sync.*
+|*| instead if you want the user settings to be stored
+|*| remotly and able to be pulled down when user logs in.
+|*|   
+\*/
 
 
 chrome.tabs.getSelected(null, function(tab) {
@@ -22,15 +28,12 @@ function addOption(title){
     var row = $('<tr></tr>').appendTo(table.find('tbody'));
     $(checkbox + labelText).appendTo(row);
     table.append(row);
-
-
-    // go ahead and set up the on chage save listener as well...
 }
 
 function saveOptions() {
     var queues = [];
     $('input:checked').each(function(i,e){
-        // now that we have slim we have to get the text from the label
+        // now that we use slim we have to get the text from the label
         queues.push( $('label[for="' + e.id + '"]').text() );
     });
 
@@ -39,7 +42,6 @@ function saveOptions() {
     if (conf) {
         chrome.storage.local.set({"queues": queues},function(){
             window.close();
-            // test and reload?
         })
     }
 

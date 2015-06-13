@@ -1,6 +1,13 @@
 /*\
-|*| Something should be said here....
-|*|
+|*|			=== UserVoice Helper Script === 
+|*| 			 UVcontentScript.js
+|*| 
+|*| Here we need to pass DOM data back to the optionsController.
+|*| With the use of message passing we are able to get it done. 
+|*| 
+|*| Icons also have to be web-accessable resources as we are 
+|*| using them to manipulate the DOM for the page. 
+|*| 
 \*/
 
     var extension = '.png';
@@ -32,7 +39,7 @@
      */
     function updateIcon() {
         try {
-            //var queues = ['All tickets','Unassigned']; // TODO : need to get this data from file
+        	// reload the saved options here
             chrome.storage.local.get('queues',function(data){
                 queues = data.queues;
             })
@@ -55,10 +62,10 @@
 
             var imagePath = 'img/';
             if (count > 10) {
-                // special case -- display the warning
+                // high count -- display the warning
                 imagePath += "warning" + extension;
             } else {
-                // dispay the nuber in the tab
+                // dispay the number in the tab
                 imagePath += count + extension;
             }
 
@@ -67,6 +74,7 @@
 
         } catch (err) {
             // TODO: warn user that the queues read failed (suggest they reset the options)
+            // they should update their options likely
         }
     }
 
@@ -93,7 +101,6 @@
         return result;
     }
 
-    // is this really needed in the context of a ContentScript?
     window.onload = function() {
         updateIcon();
         setInterval(updateIcon, 2500);

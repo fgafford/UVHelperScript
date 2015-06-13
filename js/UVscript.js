@@ -1,8 +1,23 @@
-/**
- * Script designed to help with tasts in UserVoice Helpdesk software
- */
+/*\
+|*| 		=== UserVoice Helper Script ===
+|*| 				 UVScript.js
+|*| 
+|*| This script is injected into the DOM and looses all
+|*| communication with the backgound extension processes. 
+|*| (for more info see header comment in injectScript.js)
+|*| 
+|*| Code in this file should either be properly namespaced
+|*| or inside of a self-executing anyonomus function to 
+|*| prevent overwritting properties in the JavaScript heap.
+|*| 
+|*| Note that all extension resources used in scope (regular
+|*| page scope) must be marked as web-accessable resources
+|*| in the manifest file.
+|*| 
+\*/
 
-// Globals
+
+	// set Namespace
     var UVHS = {
         alt : false,
         UVrootURL : window.location.host + "/admin"
@@ -34,32 +49,18 @@
                     $('.ticket-reply-content').show();
                     break;
                 case 88: // X
+                	// real easy to fire off a message by accident with this guy....
                     // update();
                     break;
-                case 89: // Y
-                    toggleFlag();
-                    break;
-                case 67: // C
-                    // updateAndClose();
-                    break;
-                case 86: // V
-                    // function here that adds close message
-                    getResponse(closed);
-                    // updateAndClose();
-                    break;
                 case 84: // T
+                	// great if you use vimium to navigate the page
                     focusOnTicket();
                     addTargetWrapper();
-                    break;
-                case 83: // S
-                    var elem = document.getElementById(subjectField);
-                    var sub = prompt('Subject Text: ', elem.value);
-                    elem.value = sub;
                     break;
                 case 78: // N
                     focusOnNote();
                     break;
-                case 77: // M  - change name of user
+                case 77: // M 
                     focusOnMessage();
                     break;
                 case 81: // Q
@@ -76,10 +77,6 @@
                     break;
             }
         }
-    }
-
-    function toggleFlag() {
-        // not yet implemented
     }
 
     function update() {
@@ -103,8 +100,8 @@
         $('.ticket-item-subject').css('background-color','yellow');
     }
 
+	// Wrap anchor (<a>) around all search results so they can be targeted by Vimium 
     function addTargetWrapper() {
-        // wrap anchor around all search results so they can be targeted by Vimium
         try {
             $('.ticket-item-title').wrap('<a href="#"></a>');
         } catch (err) {
@@ -123,7 +120,9 @@
         };
     };
 
+
     // =====================================================================
+
 
     // Event listenets to get everything working...
     document.body.addEventListener('keydown', keydown);
@@ -142,11 +141,11 @@
 
         enableMessageFolding();
 
-         /*
-         * Because messages are loaded over ajax we have to keep checking
-         * back to make sure all messages are updated with the listeners
-         * the enableMessageFolding should only set listener once of the
-         * icons.
-         */
+        /*\
+        |*| Because messages are loaded over ajax we have to keep checking
+        |*| back to make sure all messages are updated with the listeners
+        |*| the enableMessageFolding should only set listener once of the
+        |*| icons.
+        \*/
         setInterval(enableMessageFolding,2500);
     };

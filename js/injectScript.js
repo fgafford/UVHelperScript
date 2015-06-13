@@ -1,9 +1,20 @@
-/*
- * This is a work around function that allows the script access to the
- * other loaded scripts. The loss it that this script is no longer able
- * to communicate with the extension. The advantage is that it is now
- * able to manipulate all the code accessible on the page.
- */
+/*\
+|*|         === UserVoice Helper Script ===
+|*|					injectScript.js 
+|*| 
+|*| Due to the nature of Chrome extension being within their
+|*| own scope, in order to access the JavaScript heap (where
+|*| JavaScript is loaded for the page) we have to actually 
+|*| insert a file into the DOM and then load it from there. 
+|*| Once the code is loaded it will have access to any gloabaly
+|*| scoped functions in the page. (Very helpful)
+|*| 
+|*| However, the script can no longer communicate with the 
+|*| background JavaScript or content scripts. (No more Chrome.*) 
+|*| 
+|*| NOTE: any JavaScript injected in this way must be declaried
+|*|       as a web-accessable resource in the manifest file.
+\*/
 
 var script = 'UVscript.js';
 
