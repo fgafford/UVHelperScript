@@ -3,9 +3,8 @@
 |*| 			 UVcontentScript.js
 |*| 
 |*| Here we need to pass DOM data back to the optionsController.
-|*| With the use of message passing we are able to get it done. 
-|*| 
-|*| Icons also have to be web-accessable resources as we are 
+|*|  
+|*| Icons have to be web-accessible resources as we are 
 |*| using them to manipulate the DOM for the page. 
 |*| 
 \*/
@@ -65,7 +64,7 @@
                 // high count -- display the warning
                 imagePath += "warning" + extension;
             } else {
-                // dispay the number in the tab
+                // display the number in the tab
                 imagePath += count + extension;
             }
 
@@ -73,8 +72,8 @@
             document.querySelector('link[rel*="icon"]').setAttribute('href',chrome.extension.getURL(imagePath))
 
         } catch (err) {
-            // TODO: warn user that the queues read failed (suggest they reset the options)
-            // they should update their options likely
+            // TODO: warn user that the queues read failed
+            // suggest that they update their options
         }
     }
 

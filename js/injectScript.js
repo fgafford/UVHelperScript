@@ -2,18 +2,16 @@
 |*|         === UserVoice Helper Script ===
 |*|					injectScript.js 
 |*| 
-|*| Due to the nature of Chrome extension being within their
-|*| own scope, in order to access the JavaScript heap (where
-|*| JavaScript is loaded for the page) we have to actually 
-|*| insert a file into the DOM and then load it from there. 
-|*| Once the code is loaded it will have access to any gloabaly
-|*| scoped functions in the page. (Very helpful)
+|*| Due to the nature of the Chrome extension being within its
+|*| own scope, we have to actually insert a script tag into the DOM 
+|*| and then access the JavaScript heap (where JavaScript is loaded
+|*| for the page). Once the code is loaded, it will have access to any
+|*| globally scoped function or variable in the page. However, the 
+|*| script can no longer communicate with the extension JavaScript 
+|*| or content scripts. (No more Chrome.*) 
 |*| 
-|*| However, the script can no longer communicate with the 
-|*| background JavaScript or content scripts. (No more Chrome.*) 
-|*| 
-|*| NOTE: any JavaScript injected in this way must be declaried
-|*|       as a web-accessable resource in the manifest file.
+|*| NOTE: Any JavaScript injected in this way must be declared
+|*|       as a web-accessible resource in the manifest file.
 \*/
 
 var script = 'UVscript.js';

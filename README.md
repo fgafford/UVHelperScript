@@ -8,12 +8,11 @@ to use.
 <h3>==== Ticket Queue Counter ====</h3>
 The extension is designed to show you the number of tickets for
 queues you select in the option. The number should
-display as the icon in the uservoice tab. It is set to update
-automatically. You can set the queuse to track by clicking on the
-extension icon and then selecting to change options.
+display as the icon in the UserVoice tab. It is set to update
+automatically. Click on the extension icon to change these settings. 
 
 <h3>==== Quick Keys ====</h3>
-alt + Q : focus on persal queue (tickets assigned to you)
+alt + Q : focus on personal queue (tickets assigned to you)
 alt + I : focus on unassigned queue
 alt + M : focus on Message pane (start typing response)
 alt + N : focus on Note pane (start typing note)
@@ -27,6 +26,6 @@ Click on avatar : expand or collapse single message
 <h2>==== License and Legal ====</h2>
 This project is licensed under the terms of the MIT license.
 You can copy, fork, and extend for the benefit of the project.
-See LICENCSE.txt for more info.
+See LICENSE.txt for more info.
 
-Icon images are Copyright of : http://www.iconarchive.com/
+Icon images are Copyright of: http://www.iconarchive.com/

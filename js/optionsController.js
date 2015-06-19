@@ -3,25 +3,28 @@
 |*| 			 optionsController.js
 |*| 
 |*|	This contains all the logic for the options menu.
-|*| Options are saved locally. Use Chrome.storage.sync.*
-|*| instead if you want the user settings to be stored
-|*| remotly and able to be pulled down when user logs in.
-|*|   
+|*| Options are saved locally (chrome.storage.local).
+|*| We get the values on the page by requesting them
+|*| from the content script. We initiate this request  
+|*| from the pop-up as the content script will already 
+|*| be loaded.  
 \*/
 
 
 chrome.tabs.getSelected(null, function(tab) {
     port = chrome.tabs.connect(tab.id);
+	// set up response listener
     port.onMessage.addListener(function(msg) {
        msg.queues.forEach(function(i){
            addOption(i);
        });
     });
+	// make the request 
     port.postMessage({"request": "queues"});
 });
 
 
-// func for appending checkboxs (one per queue)
+// func for appending checkboxes (one per queue)
 function addOption(title){
     var checkbox = '<td><input type="checkbox" id="' + slim(title) + '"></input></td>';
     var labelText = '<td><label for="' + slim(title) + '">' + title + '</label></td>'
@@ -33,7 +36,7 @@ function addOption(title){
 function saveOptions() {
     var queues = [];
     $('input:checked').each(function(i,e){
-        // now that we use slim we have to get the text from the label
+        // now that we use slim, we have to get the text from the label
         queues.push( $('label[for="' + e.id + '"]').text() );
     });
 
