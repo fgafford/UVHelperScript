@@ -1,11 +1,12 @@
 {
     "manifest_version": 2,
-    "name": "UV Helper Scripts",
+    "name": "UV Helper Script",
     "description": "Scripts for making life easier when using User Voice support ticket system",
     "version": "1",
     "icons": {
-        "16": "img/hammer-icon.png",
-        "48": "img/Farm-Fresh_hammer.png"
+        "16": "img/horn_16.png",
+        "48": "img/horn_48.png",
+        "128": "img/horn_128.png"
     },
     "options_page": "options.html",
     "permissions": [
