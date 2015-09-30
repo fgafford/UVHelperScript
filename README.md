@@ -1,9 +1,6 @@
 <h1>  ==== UserVoice Helper Script ==== </h1>
 <p> This Chrome extension is designed to add some much needed functionality to the UserVoice web interface.</p>
 <h2>============ Features ==================</h2>
-This extension is to make life with UserVoice support softwarei </br>
-a little bit better. It adds small features to make it easier</br>
-to use.</br>
 
 <h3>==== Ticket Queue Counter ====</h3>
 The extension is designed to show you the number of tickets for</br>
